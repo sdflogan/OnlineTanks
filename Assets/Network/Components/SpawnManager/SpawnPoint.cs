@@ -10,16 +10,21 @@ namespace NetworkTanks
 {
     public class SpawnPoint : MonoBehaviour
     {
-        public bool AlreadyInUse { get; private set; }
+        public TankController Owner { get; private set; }
 
-        public void Take()
+        public bool IsEmpty()
         {
-            AlreadyInUse = true;
+            return Owner == null;
+        }
+
+        public void Take(TankController tank)
+        {
+            Owner = tank;
         }
 
         public void Release()
         {
-            AlreadyInUse = false;
+            Owner = null;
         }
 
         private void OnDrawGizmos()

@@ -133,7 +133,7 @@ namespace NetworkTanks
         private void HandleTankTrigger(Collider tankCollider)
         {
             TankController tank = tankCollider.gameObject.GetComponent<TankController>();
-            tank.DestroyTank();
+            tank.DestroyTank(true);
 
             DestroyProjectile();
         }

@@ -47,9 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8b569ea290f2e47ade6f07fa5bc0fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 20
+  Speed: 15
   MaxReflections: 10
-  MaxSecondsLifeTime: 2
+  MaxSecondsLifeTime: 3
   ReflectDetectionDistance: 0.5
   ReflectionMask:
     serializedVersion: 2

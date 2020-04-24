@@ -20,9 +20,9 @@ namespace NetworkTanks
         public Transform ProjectileSpawn;
         public float CanonRotationSpeed = 1f;
         public GameObject LaserGameObject;
-
-        [Header("Match")]
-        //public 
+        
+        // Match
+        public TeamList Team { get; private set; }
 
         // References
         private Rigidbody m_RigidBody;
@@ -159,19 +159,45 @@ namespace NetworkTanks
             //m_Animator.SetFloat("Speed", m_CurrentSpeed, m_SpeedDampTime, Time.deltaTime);
         }
 
-        public void DestroyTank()
+        public void DestroyTank(bool scorePoint = false)
         {
-
+            if (scorePoint)
+            {
+                GameManager.Instance.ScoreRivalPoint(Team);
+            }
         }
 
         public void ResetState()
         {
-
+            m_Canon.ResetState();
         }
 
         public void Spawn()
         {
             ResetState();
+            SetPositionToSpawn();
+        }
+
+        private void SetPositionToSpawn()
+        {
+            SpawnPoint spawn = TeamManager.Instance.GetSpawn(this);
+
+            if (spawn != null)
+            {
+                transform.position = spawn.transform.position;
+                transform.rotation = spawn.transform.rotation;
+            }
+        }
+
+        public void SetTeam(TeamList team)
+        {
+            this.Team = team;
+            InitTeamSetup();
+        }
+
+        private void InitTeamSetup()
+        {
+            //TeamManager.Instance.AssetsTeam1
         }
     }
 }
