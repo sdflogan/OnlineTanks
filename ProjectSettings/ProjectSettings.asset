@@ -666,7 +666,7 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   cloudProjectId: 3f4a27d5-7048-4704-9c52-fb757668fb59
   framebufferDepthMemorylessMode: 0
-  projectName: Online (1)
+  projectName: TankWars
   organizationId: sdfdani
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
