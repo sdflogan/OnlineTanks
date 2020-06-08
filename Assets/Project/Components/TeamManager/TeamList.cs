@@ -1,4 +1,4 @@
-﻿namespace NetworkTanks
+﻿namespace TankWars
 {
     public enum TeamList
     {

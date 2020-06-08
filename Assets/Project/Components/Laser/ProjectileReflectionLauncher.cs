@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-namespace NetworkTanks
+namespace TankWars
 {
     [RequireComponent(typeof(LineRenderer))]
     public class ProjectileReflectionLauncher : MonoBehaviour

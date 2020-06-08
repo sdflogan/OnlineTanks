@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace NetworkTanks
+namespace TankWars
 {
     [CreateAssetMenu(fileName = "TeamAssetsData", menuName = "DataObjects/TeamAssetsData")]
     public class TeamAssetsContainer : ScriptableObject

@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-namespace NetworkTanks
+namespace TankWars
 {
     public class SpawnPoint : MonoBehaviour
     {

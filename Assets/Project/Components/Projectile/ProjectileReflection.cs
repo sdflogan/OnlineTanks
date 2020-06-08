@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace NetworkTanks
+namespace TankWars
 {
     public class ProjectileReflection : MonoBehaviour
     {
