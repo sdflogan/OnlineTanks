@@ -5,24 +5,16 @@ using UnityEngine;
 
 namespace TankWars
 {
-    public class CanonController
+    public class CanonController : CanonBase
     {
-        public Transform Head;
-        public Transform ProjectileSpawn;
-        public float RotationSpeed = 1f;
-        public bool Reloading { get; private set; }
-
         private Camera m_Camera;
 
-        public CanonController(Transform canonTransform, Transform projectileSpawn, float rotationSpeed)
+        public CanonController(TankBase tank, float rotationSpeed) : base(tank, rotationSpeed)
         {
             m_Camera = Camera.main;
-            this.Head = canonTransform;
-            this.RotationSpeed = rotationSpeed;
-            this.ProjectileSpawn = projectileSpawn;
         }
 
-        public void RotateCanon(float axisValueX, float axisValueY)
+        public override void RotateCanon(float axisValueX, float axisValueY)
         {
             // Rotación X-Z del input
             Vector3 rotation = new Vector3(axisValueX, 0f, axisValueY);
@@ -38,27 +30,6 @@ namespace TankWars
                 // Interpolación para que la rotación se realice de forma suave
                 Head.rotation = Quaternion.Lerp(Head.rotation, quatR, Time.deltaTime * RotationSpeed);
             }
-        }
-
-        public void Shoot()
-        {
-            if (!Reloading)
-            {
-                ProjectileReflection projectile = ProjectileManager.Instance.SpawnProjectile();
-                projectile.Init(ProjectileSpawn);
-                Reloading = true;
-            }
-        }
-
-        public void FinishReloading()
-        {
-            Reloading = false;
-        }
-
-        public void ResetState()
-        {
-            Reloading = false;
-            Head.rotation = Quaternion.Euler(Vector3.zero);
         }
     }
 }

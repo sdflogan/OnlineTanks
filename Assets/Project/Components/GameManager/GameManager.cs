@@ -1,35 +1,67 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TankWars.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Utils;
 
 namespace TankWars
 {
     public class GameManager : Singleton<GameManager>
     {
+        private void Start()
+        {
+            LoadMainMenu();
+        }
+
         public void StartGame()
         {
-            TeamManager.Instance.InitTeams(GetPlayerTanks());
-            SpawnTanks(GetPlayerTanks());
+            LoadBattleScene();
         }
 
-        public void ScoreRivalPoint(TeamList destroyedTankTeam)
+        public void Quit()
         {
-            TeamManager.Instance.ScoreRivalPoint(destroyedTankTeam);
+            Application.Quit();
         }
 
-        // TODO: GET ALL PLAYER TANKS
-        private List<TankController> GetPlayerTanks()
+        private void LoadMainMenu()
         {
-            return null;
+            StartCoroutine(LoadMainMenuCoroutine());
         }
 
-        private void SpawnTanks(List<TankController> tanks)
+        private void LoadBattleScene()
         {
-            foreach (TankController tank in tanks)
+            StartCoroutine(LoadBattleSceneCoroutine());
+        }
+
+        private IEnumerator LoadMainMenuCoroutine()
+        {
+            LoadingScreen.Instance.Enable();
+            AsyncOperation loading = SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+
+            while (!loading.isDone)
             {
-                tank.Spawn();
+                yield return new WaitForSeconds(0.25f);
             }
+
+            LoadingScreen.Instance.Disable();
         }
+
+        private IEnumerator LoadBattleSceneCoroutine()
+        {
+            LoadingScreen.Instance.Enable();
+            AsyncOperation loading = SceneManager.LoadSceneAsync(2, LoadSceneMode.Additive);
+            AsyncOperation unloading = SceneManager.UnloadSceneAsync(1);
+
+            while (!loading.isDone || !unloading.isDone)
+            {
+                yield return new WaitForSeconds(0.25f);
+            }
+
+            LoadingScreen.Instance.Disable();
+
+            TankManager.Instance.LoadTanks();
+        }
+
     }
 }

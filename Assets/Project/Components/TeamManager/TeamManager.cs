@@ -53,12 +53,13 @@ namespace TankWars
         public void SetTankTeam(TankController tank, TeamList team)
         {
             GetTeam(team).AddMember(tank);
-            tank.SetTeam(team);
+            //tank.SetTeam(team);
         }
 
         public SpawnPoint GetSpawn(TankController tank)
         {
-            return (GetTeam(tank.Team).GetSpawnPoint(tank));
+            return null;
+            //return (GetTeam(tank.Team).GetSpawnPoint(tank));
         }
 
         public void ScoreRivalPoint(TeamList destroyedTankTeam)

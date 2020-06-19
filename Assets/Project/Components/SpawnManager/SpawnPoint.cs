@@ -10,14 +10,14 @@ namespace TankWars
 {
     public class SpawnPoint : MonoBehaviour
     {
-        public TankController Owner { get; private set; }
+        public TankBase Owner { get; private set; }
 
         public bool IsEmpty()
         {
             return Owner == null;
         }
 
-        public void Take(TankController tank)
+        public void Take(TankBase tank)
         {
             Owner = tank;
         }

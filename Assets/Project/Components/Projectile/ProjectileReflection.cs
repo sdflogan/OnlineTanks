@@ -8,7 +8,6 @@ namespace TankWars
     {
         #region VARIABLES
 
-        public const string CLASS_TAG = "Projectile";
         public const float COLLIDER_OFFTIME_SECONDS = 0.5f;
 
         public float Speed = 10f;
@@ -117,11 +116,11 @@ namespace TankWars
         {
             switch (other.tag)
             {
-                case TankController.CLASS_TAG:
+                case TagsManager.TANK:
                     HandleTankTrigger(other);
                     break;
 
-                case ProjectileReflection.CLASS_TAG:
+                case TagsManager.PROJECTILE:
                     HandleProjectileTrigger(other);
                     break;
 
@@ -132,7 +131,7 @@ namespace TankWars
 
         private void HandleTankTrigger(Collider tankCollider)
         {
-            TankController tank = tankCollider.gameObject.GetComponent<TankController>();
+            TankBase tank = tankCollider.gameObject.GetComponentInParent<TankBase>();
             tank.DestroyTank(true);
 
             DestroyProjectile();
